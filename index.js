@@ -44,12 +44,11 @@ server.route({
     slackService.send({
       text: '[<' + req.payload.repository.repo_url + '|' + req.payload.repository.repo_name + '>] new image build complete',
       username: 'DockerHub',
-      icon_url: server.info.uri + '/docker-logo.png'
+      icon_url: 'https://hooks-slack-dockerhub.herokuapp.com/docker-logo.png'
     }, res);
   }
 });
 
 server.start(function () {
   console.log('Server listening on %d', port);
-  console.log(server.info.uri + '/docker-logo.png');
 });
