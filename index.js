@@ -16,7 +16,7 @@ var port = process.env.PORT || 8080;
 server.connection({port: port});
 server.register(inert, function () {});
 
-var readme = fs.readFileSync(__dirname + '/README.md');
+var readme = fs.readFileSync(__dirname + '/README.md', 'utf8');
 var docs = marked(readme);
 
 server.route({
