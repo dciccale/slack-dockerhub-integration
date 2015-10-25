@@ -37,7 +37,7 @@ server.route({
 
 server.route({
   method: 'POST',
-  path:'/{id*}',
+  path:'/services/{id*}',
   handler: function (req, res) {
     var slackService = new SlackService(req.params);
 
