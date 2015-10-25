@@ -2,7 +2,7 @@
 
 Use the already deployed service at https://hooks-slack-dockerhub.herokuapp.com
 
-Or you can run this service in your own server.
+Or you can clone the repo [dciccale/slack-dockerhub-integration](https://github.com/dciccale/slack-dockerhub-integration) and run this service in your own server. (Dockerfile provided)
 
 ## Usage
 
