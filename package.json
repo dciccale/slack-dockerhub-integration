@@ -4,7 +4,10 @@
   "description": "Slack + DockerHub integration",
   "main": "index.js",
   "scripts": {
-    "start": "node ."
+    "start": "node .",
+    "build": "docker build -t slack-dockerhub .",
+    "container": "docker run --rm --name slack-dockerhub-integration -p 80:8080 slack-dockerhub",
+    "stop": "docker stop $(docker ps -q -f \"image=slack-dockerhub\")"
   },
   "keywords": [
     "slack",
