@@ -16,16 +16,14 @@ var port = process.env.PORT || 8080;
 server.connection({port: port});
 server.register(inert, function () {});
 
+var readme = fs.readFileSync(__dirname + '/README.md');
+var docs = marked(readme);
+
 server.route({
   method: 'GET',
   path:'/{param*}',
   handler: function (req, res) {
-    fs.readFile(__dirname + '/README.md', 'utf8', function (err, content) {
-      if (err) {
-        return res(err);
-      }
-      res(marked(content));
-    });
+    res(docs);
   }
 });
 
@@ -44,7 +42,7 @@ server.route({
     var slackService = new SlackService(req.params);
 
     slackService.send({
-      text: 'Hello World!',
+      text: '[<' + req.payload.repository.repo_url + '|' + req.payload.repository.repo_name + '>] new image build complete',
       username: 'DockerHub',
       icon_url: server.info.uri + '/docker-logo.png'
     }, res);
