@@ -1,14 +1,14 @@
 {
-  "name": "dockerhub-slack-integration",
+  "name": "slack-dockerhub-integration",
   "version": "0.0.1",
-  "description": "Dockerhub + Slack integration",
+  "description": "Slack + DockerHub integration",
   "main": "index.js",
   "scripts": {
     "start": "node ."
   },
   "keywords": [
-    "dockerhub",
     "slack",
+    "dockerhub",
     "integration"
   ],
   "author": "Denis Ciccale (@dciccale)",
