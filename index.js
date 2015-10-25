@@ -51,4 +51,5 @@ server.route({
 
 server.start(function () {
   console.log('Server listening on %d', port);
+  console.log(server.info.uri + '/docker-logo.png');
 });
