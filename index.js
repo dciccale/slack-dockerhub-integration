@@ -21,13 +21,13 @@ const docs = marked(readme);
 server.route({
   method: 'GET',
   path:'/{param*}',
-  handler: (req, res) => res(docs))
+  handler: (req, res) => res(docs)
 });
 
 server.route({
   method: 'GET',
   path: '/docker-logo.png',
-  handler: (req, res) => res.file(`${__dirname}/docker-logo.png`))
+  handler: (req, res) => res.file(`${__dirname}/docker-logo.png`)
 });
 
 server.route({
