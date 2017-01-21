@@ -1,17 +1,16 @@
-'use strict';
-
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 const https = require('https');
 const fs = require('fs');
-const Hapi = require('hapi');
+const hapi = require('hapi');
 const inert = require('inert');
 const marked = require('marked');
+const send = require('./send');
 
-const server = new Hapi.Server();
+const server = new hapi.Server();
 const port = process.env.PORT || 8080;
 
-server.connection({port: port});
+server.connection({port});
 server.register(inert, () => {});
 
 const readme = fs.readFileSync(`${__dirname}/README.md`, 'utf8');
@@ -39,27 +38,7 @@ server.route({
       icon_url: 'https://hooks-slack-dockerhub.herokuapp.com/docker-logo.png'
     };
 
-    const options = {
-      method: 'POST',
-      hostname: 'hooks.slack.com',
-      path: `/services/${req.params.id}`,
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    };
-
-    let body = '';
-
-    https.request(options, (res) => {
-      res.setEncoding('utf8');
-      res.on('data', (chunk) => {
-        body += chunk;
-      });
-      res.on('end', () => reply(body));
-    })
-    .on('error', reply)
-    .write(JSON.stringify(params))
-    .end();
+    send(req.params.id, params, reply);
   }
 });
 
